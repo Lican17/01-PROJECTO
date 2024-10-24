@@ -25,19 +25,26 @@ La calificación que se repitió más veces (moda).
 
 */
 
+function getMayor(arrayCalificaciones){
+    let maximo=0
+    let numeroMasRepetido=0
+
+    for (let calificacion in arrayCalificaciones) {
+        if (arrayCalificaciones[calificacion] > maximo) {
+          maximo = arrayCalificaciones[calificacion];
+          numeroMasRepetido = calificacion;
+        
+        }
+    }
+    return numeroMasRepetido
+}
+
+
 const encuestaRespuestas = [8, 5, 10, 7, 6, 8, 9, 10, 7, 4, 6, 3, 7, 8, 6, 5, 4, 2, 9, 10]
 const seguimientoRespuestas = [0,0,0,0,0,0,0,0,0,0,0]
 let clienteSatisfechoContador = 0
 let clienteInsatisfechoContador = 0
-//const sumatoriaCalificacionesEncuesta
-//const promedioCalificacionesEncuesta 
 
-/*
-function calculoPorcentajeSatisfaccion(c){
-    (clienteSatisfechoContador*100)/encuestaRespuestas.length
-}
-*/
-console.log(seguimientoRespuestas)
 
 
 const sumatoriaCalificacionesEncuesta = encuestaRespuestas.reduce((a,b)=> a + b, 0)
@@ -49,7 +56,6 @@ for(let i=0 ; i<encuestaRespuestas.length ; i++){
     }else if(encuestaRespuestas[i]<=4){
         clienteInsatisfechoContador++
     }
-    // console.log(encuestaRespuestas[i])
     seguimientoRespuestas[encuestaRespuestas[i]]++
 
 }
@@ -59,21 +65,24 @@ const porcentajeClientesSatisfechos = (clienteSatisfechoContador*100)/encuestaRe
 const porcentajeClientesInsatisfechos = (clienteSatisfechoContador*100)/encuestaRespuestas.length
 
 //La calificación que se repitió más veces (moda).
-
+const numeroMasRepetidoa= getMayor(seguimientoRespuestas)
 
 console.log(encuestaRespuestas)
 
 console.log(clienteSatisfechoContador)
 
-console.log(clienteInsatisfechoContador)
 
+document.write(`<p>
+        El promedio de satisfación es ${promedioCalificacionesEncuesta}.
+        <p>
+        <p>
+        Hubo ${clienteSatisfechoContador} clientes satisfechos y ${clienteInsatisfechoContador}
+          clientes instatisfechos.
+         </p>
+         <p> 
+          Por otra parte el porcentaje de clientes satisfechos es ${porcentajeClientesSatisfechos} y
+          el porcentaje de clientes insatisfechos es ${porcentajeClientesInsatisfechos}.
+          </p>
+          <p>La calificación que mas veces se repitio es ${numeroMasRepetidoa} <p>`)
 
-//console.log(sumatoriaCalificacionesEncuesta)
-
-
-console.log(promedioCalificacionesEncuesta)
-
-console.log(seguimientoRespuestas)
-
-console.log('La calificación que mas veces se repitio fue:');
-//console.log(Math.max(seguimientoRespuestas))
+          
